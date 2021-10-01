@@ -1,0 +1,22 @@
+version: "3.8"
+
+volumes:
+    api_node_modules:
+        driver: local
+    ui_node_modules:
+        driver: local
+
+services:
+    revad:
+        image: arkisto/describo-revad
+        hostname: revad
+        tty: true
+        working_dir: "/srv/revad"
+        environment:
+            TERM: "xterm-256color"
+            NODE_ENV: "development"
+        volumes:
+            - ./revad.toml:/srv/revad/revad.toml
+        ports:
+            - 19000:19001
+        entrypoint: "./revad -c revad.toml -p revad.pid"
