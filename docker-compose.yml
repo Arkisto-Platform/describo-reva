@@ -1,53 +1,22 @@
 version: "3.8"
 
 networks:
-  default:
-    external:
-      name: describo-online_default
+    default:
+        external:
+            name: describo-online_default
 
 services:
-    reva-gateway:
-        image: arkisto/describo-revad
+    reva:
+        image: arkisto/describo-reva
         hostname: reva-gateway
         tty: true
-        working_dir: "/srv/revad"
-        depends_on:
-            - reva-storage-home
-            - reva-storage-reva
+        working_dir: "/srv/reva"
         environment:
             TERM: "xterm-256color"
             NODE_ENV: "development"
         volumes:
             - ./configuration:/etc/revad
-            - ./data:/data
-        command: bash -c "sleep 2 && ./revad -c /etc/revad/gateway.toml"
+            - ./data:/var/tmp/reva/data
+        command: bash -c "./revad --dev-dir /etc/revad"
         ports:
             - 19000:19001
-
-    reva-storage-home:
-        image: arkisto/describo-revad
-        hostname: reva-storage-home
-        tty: true
-        working_dir: "/srv/revad"
-        environment:
-            TERM: "xterm-256color"
-        volumes:
-            - ./configuration:/etc/revad
-            - ./data/home:/data
-        command: "./revad -c /etc/revad/storage-home.toml"
-        ports:
-            - 17000:17001
-
-    reva-storage-reva:
-        image: arkisto/describo-revad
-        hostname: reva-storage-reva
-        tty: true
-        working_dir: "/srv/revad"
-        environment:
-            TERM: "xterm-256color"
-        volumes:
-            - ./configuration:/etc/revad
-            - ./data/reva:/data
-        command: "./revad -c /etc/revad/storage-reva.toml"
-        ports:
-            - 18000:18001
