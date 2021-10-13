@@ -9,7 +9,6 @@ data_server_url = "http://localhost:18001/data"
 
 [http]
 address = "0.0.0.0:18001"
-enabled_middlewares = ["cors"]
 
 [http.services.dataprovider]
 driver = "localhome"
