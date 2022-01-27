@@ -1,6 +1,6 @@
 FROM node:14-buster
 
-ENV VERSION=1.14.0
+ENV VERSION=1.17.0
 
 RUN mkdir p /srv/reva && \
     cd /srv/reva && \

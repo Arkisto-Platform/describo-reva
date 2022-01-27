@@ -7,7 +7,7 @@ Manage a reva instance for describo development.
 Build the reva container:
 
 ```
-docker build -t arkisto/describo-revad .
+docker build -t arkisto/describo-reva .
 ```
 
 Edit the dockerfile to change the version: see:
