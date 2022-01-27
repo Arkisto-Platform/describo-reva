@@ -18,3 +18,8 @@ Edit the dockerfile to change the version: see:
 ```
 docker-compose up
 ```
+
+## Pushing to docker hub
+
+-   docker login
+-   docker push arkisto/describo-reva:latest
